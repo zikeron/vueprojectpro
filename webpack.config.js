@@ -11,11 +11,16 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(js|vue)$/,
+        enforce: 'pre',
+        include: [path.resolve(__dirname, './src')]
+      },
+      {
         test: /\.css$/,
         use: [
           'vue-style-loader',
           'css-loader'
-        ],
+        ]
       },
       {
         test: /\.scss$/,
@@ -23,7 +28,7 @@ module.exports = {
           'vue-style-loader',
           'css-loader',
           'sass-loader'
-        ],
+        ]
       },
       {
         test: /\.sass$/,
@@ -31,7 +36,7 @@ module.exports = {
           'vue-style-loader',
           'css-loader',
           'sass-loader?indentedSyntax'
-        ],
+        ]
       },
       {
         test: /\.vue$/,
