@@ -11,7 +11,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|vue)$/,
+        test: /\.(vue|js)$/,
         loader: 'eslint-loader',
         enforce: 'pre',
         include: [path.resolve(__dirname, './src')]
