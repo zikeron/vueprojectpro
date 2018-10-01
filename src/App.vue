@@ -1,22 +1,12 @@
 <template lang="pug">
   #app
-    img(src="./assets/logo.png")
-    section.section
-      nav.nav.has-shadow
-        .container
-          input.input.is-large(
-            type="text",
-            placeholder="Buscar",
-            v-model="searchQuery"
-          )
-          a.button.is-info.is-large(@click="search") Buscar
-          a.button.is-danger.is-large &times;
-          p
-            small {{ searchMessage }}
-
-    .container.results
-      .columns
-        .column(v-for="t in tracks") {{ t.name }} - {{ t.artist }}
+    .conteiner.has-text-centered
+      img(src="./assets/logo.png")
+    //- child
+    //-   h1(slot="title") Titulo slot
+    lc-header
+    router-view
+    lc-footer
     //- p(v-show="showValue") {{ value }}
     //- p(v-if="showValue") {{ value }}
     //- p(v-else-if="false") {{ 'Algo más' }}
@@ -36,70 +26,56 @@
     //-       v-model="birthday"
     //-       type="date"
     //-       )
-    //- .columns
+    //- .<div class="columns">
+    //- </div>
     //- p {{ age }}
 </template>
 
 <script>
-const tracks = [
-  { name: 'Muchacha', artist: 'Luis A Spinetta' },
-  { name: 'Hoy aca en el baile', artist: 'El Pepo' },
-  { name: 'I was made for loving you', artist: 'Kiss' }
-]
+import LcFooter from '@/components/layout/Footer.vue'
+import LcHeader from '@/components/layout/Header.vue'
 
 export default {
   name: 'app',
-  data () {
-    return {
-      searchQuery: '',
-      tracks: []
-      // msg: 'Hello world',
-      // person: {
-      //   name: 'Alejandro'
-      // },
-      // showValue: false,
-      // value: 'Algo',
-      // items: [ 1, 2, 3, 4, 5 ],
-      // name: '',
-      // lastName: '',
-      // formattedName: '',
-      // url: 'https://www.platzi.com',
-      // birthday: ''
-    }
-  },
-  computed: {
-    searchMessage () {
-      return `Encontrados: ${this.tracks.length}`
-    }
-    // fullName () {
-    //   return `${this.name} ${this.lastName}`
-    // },
-    // age () {
-    //   return new Date(
-    //     new Date() - new Date(this.birthday)
-    //   ).getUTCFullYear() - 1970
-    // }
-  },
-  // watch: {
-  //   name (newVal, oldVal) {
-  //     console.log(newVal, oldVal)
-  //   }
-  // },
-  methods: {
-    search () {
-      this.tracks = tracks
-    }
-  //   format () {
-  //     this.formattedName = this.name.split(' ').join('-').toUpperCase()
-  //   }
+  components: {
+    LcFooter,
+    LcHeader
   }
 }
+// created () {
+//   console.log('created')
+// },
+// mounted () {
+//   console.log('mounted')
+// },
+// computed: {
+//   fullName () {
+//     return `${this.name} ${this.lastName}`
+//   },
+//   age () {
+//     return new Date(
+//       new Date() - new Date(this.birthday)
+//     ).getUTCFullYear() - 1970
+//   }
+// },
+// watch: {
+//   name (newVal, oldVal) {
+//     console.log(newVal, oldVal)
+//   }
+// },
+// methods: {
+//   format () {
+//     this.formattedName = this.name.split(' ').join('-').toUpperCase()
+//   }
 </script>
 
 <style lang="scss">
 @import './scss/main.scss';
 
-results{
+.results{
   margin-top: 50px;
+}
+.is-active {
+  border: 3px #23d160 solid;
 }
 </style>
